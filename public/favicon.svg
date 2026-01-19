@@ -1,0 +1,14 @@
+<svg viewBox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black background -->
+  <rect width="720" height="720" fill="#000000"/>
+  
+  <!-- BK text in SF Pro (fallback to system-ui if not available) -->
+  <text 
+    x="360" 
+    y="532" 
+    font-family="SF Pro Display, SF Pro, -apple-system, system-ui, sans-serif" 
+    font-size="424" 
+    font-weight="600"
+    fill="#FFFFFF" 
+    text-anchor="middle">BK</text>
+</svg>
