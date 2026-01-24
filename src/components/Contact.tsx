@@ -264,7 +264,7 @@ const Contact = () => {
             </h3>
             <form
               className="space-y-6"
-              action="https://formsubmit.co/025f2544c8320e00e639136ef08d6753"
+              action={import.meta.env.VITE_FORM_SUBMIT_URL}
               method="POST"
             >
               <input type="hidden" name="_captcha" value="false" />
