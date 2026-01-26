@@ -1,3 +1,6 @@
+# Brandon Kigen Portfolio - Robots Configuration
+# https://brandon-kigen.github.io
+
 User-agent: Googlebot
 Allow: /
 
@@ -12,3 +15,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap location
+Sitemap: https://brandon-kigen.github.io/sitemap.xml

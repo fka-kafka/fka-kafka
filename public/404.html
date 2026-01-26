@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | Brandon Kigen</title>
+  <script>
+    /**
+     * GitHub Pages SPA Routing Fallback
+     * 
+     * GitHub Pages doesn't support single-page app routing natively.
+     * When a user navigates to a path like /about or refreshes on a route,
+     * GitHub Pages looks for that file and returns 404 when it doesn't exist.
+     * 
+     * This script captures the current URL and redirects to the main page,
+     * where the React Router can handle the route properly.
+     * 
+     * The path is stored in sessionStorage so the main app can read it
+     * and navigate to the correct route after loading.
+     */
+    sessionStorage.redirect = location.href;
+  </script>
+  <meta http-equiv="refresh" content="0;URL='/'">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #0a0a0a;
+      color: #fafafa;
+    }
+
+    .loader {
+      text-align: center;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #333;
+      border-top-color: #fafafa;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loader">
+    <div class="spinner"></div>
+    <p>Redirecting...</p>
+  </div>
+</body>
+
+</html>
