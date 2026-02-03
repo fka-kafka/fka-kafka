@@ -22,9 +22,7 @@ const SkillSet = ({
       transition={{ delay: index * 0.1 }}
     >
       <div className="flex items-center gap-3">
-        <span className="font-mono text-xs text-primary/60">
-          0{index + 1}
-        </span>
+        <span className="font-mono text-xs text-primary/60">0{index + 1}</span>
         <h3 className="font-semibold uppercase tracking-wider text-sm">
           {category.title}
         </h3>
@@ -41,12 +39,12 @@ const SkillSet = ({
             }}
             whileHover={{ x: 5, color: "hsl(var(--primary))" }}
             onClick={() => onSkillClick(skill)}
+            role="button"
+            tabIndex={0}
           >
             {skill}
             {skillFacts[skill] && (
-              <span className="ml-1 text-primary/40 text-xs">
-                •
-              </span>
+              <span className="ml-1 text-primary/40 text-xs">•</span>
             )}
           </motion.div>
         ))}
