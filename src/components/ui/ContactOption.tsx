@@ -87,6 +87,8 @@ const ContactOption = ({
       className="flex items-center gap-4 group cursor-pointer"
       onClick={onClick}
       {...containerAnimations}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
     >
       {content}
     </motion.div>
