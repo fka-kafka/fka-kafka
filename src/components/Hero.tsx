@@ -92,7 +92,7 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              href="#projects"
+              href="#about"
             >
               <Button variant="hero" size="lg">
                 Know More
