@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   Github,
   Linkedin,
   Mail,
@@ -8,10 +7,11 @@ import {
   Calendar,
   Globe,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { profile } from "@/data/profile";
+import ContactOption from "@/components/ui/ContactOption";
+import ContactForm from "@/components/ui/ContactForm";
 
 const Contact = () => {
   const ref = useRef(null);
@@ -52,7 +52,10 @@ const Contact = () => {
           className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-primary text-primary-foreground px-8 py-4 font-mono text-center"
         >
           <Globe className="w-8 h-8 mx-auto mb-2" />
-          <p>Your local engineer {profile.location.flag}. Providing global results!</p>
+          <p>
+            Your local engineer {profile.location.flag}. Providing global
+            results!
+          </p>
         </motion.div>
       )}
 
@@ -104,125 +107,52 @@ const Contact = () => {
             </motion.p>
 
             <div className="space-y-6">
-              {/* Email */}
-              <motion.a
+              <ContactOption
+                icon={Mail}
+                label="Email"
+                value={profile.contact.email}
                 href={`mailto:${profile.contact.email}`}
-                className="flex items-center gap-4 group"
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.3 }}
-                whileHover={{ x: 10 }}
-              >
-                <motion.div
-                  className="w-12 h-12 border border-border flex items-center justify-center group-hover:border-primary group-hover:bg-primary/10 transition-all duration-300"
-                  whileHover={{ rotate: 10 }}
-                >
-                  <Mail className="w-5 h-5 text-primary" />
-                </motion.div>
-                <div>
-                  <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest block mb-1">
-                    Email
-                  </span>
-                  <span className="font-semibold group-hover:text-primary transition-colors">
-                    {profile.contact.email}
-                  </span>
-                </div>
-              </motion.a>
+                delay={0.3}
+                isInView={isInView}
+              />
 
-              {/* WhatsApp/Phone - Fastest Response */}
-              <motion.a
+              <ContactOption
+                icon={PhoneCall}
+                label="WhatsApp / Phone"
+                value={profile.contact.phone}
                 href={profile.contact.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 group relative"
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.35 }}
-                whileHover={{ x: 10 }}
-              >
-                <motion.div
-                  className="w-12 h-12 border border-primary bg-primary/5 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300"
-                  whileHover={{
-                    rotate: 10,
-                    borderColor: "hsl(var(--primary))",
-                  }}
-                >
-                  <PhoneCall className="w-5 h-5 text-primary" />
-                </motion.div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest">
-                      WhatsApp / Phone
-                    </span>
-                    {/* Fastest Response Badge - Visible on Hover */}
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
-                      <span className="text-highlight px-1.5 py-0.5 text-xs font-bold font-mono uppercase tracking-wider rounded-sm">
-                        ⚡ Fastest
-                      </span>
-                    </div>
-                  </div>
-                  <span className="font-semibold group-hover:text-primary transition-colors">
-                    {profile.contact.phone}
+                delay={0.35}
+                isInView={isInView}
+                badge={
+                  <span className="text-highlight px-1.5 py-0.5 text-xs font-bold font-mono uppercase tracking-wider rounded-sm">
+                    ⚡ Fastest
                   </span>
-                </div>
-              </motion.a>
+                }
+              />
 
-              {/* Schedule Chat - Calendly */}
-              <motion.a
+              <ContactOption
+                icon={Calendar}
+                label="Schedule a Chat"
+                value="Let's get right to it!"
                 href={profile.contact.calendly}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 group"
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.4 }}
-                whileHover={{ x: 10 }}
-              >
-                <motion.div
-                  className="w-12 h-12 border border-border flex items-center justify-center group-hover:border-primary group-hover:bg-primary/10 transition-all duration-300"
-                  whileHover={{ rotate: 10 }}
-                >
-                  <Calendar className="w-5 h-5 text-primary" />
-                </motion.div>
-                <div>
-                  <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest block mb-1">
-                    Schedule a Chat
-                  </span>
-                  <span className="font-semibold group-hover:text-primary transition-colors">
-                    Let's get right to it!
-                  </span>
-                </div>
-              </motion.a>
+                delay={0.4}
+                isInView={isInView}
+              />
 
-              {/* Location - Easter egg trigger */}
-              <motion.div
-                className="flex items-center gap-4 cursor-pointer"
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.4 }}
+              <ContactOption
+                icon={MapPin}
+                label="Location"
+                value={`${profile.location.city}, ${profile.location.countryCode} ${profile.location.flag}`}
                 onClick={handleCoffeeClick}
-                whileHover={{ x: 10 }}
+                delay={0.4}
+                isInView={isInView}
               >
-                <motion.div
-                  className="w-12 h-12 border border-border flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all duration-300"
-                  animate={coffeeClicks > 0 ? { scale: [1, 1.1, 1] } : {}}
-                >
-                  <MapPin className="w-5 h-5 text-primary" />
-                </motion.div>
-                <div>
-                  <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest block mb-1">
-                    Location
+                {coffeeClicks > 0 && coffeeClicks < 5 && (
+                  <span className="ml-2 text-xs text-primary">
+                    {5 - coffeeClicks} more...
                   </span>
-                  <span className="font-semibold">
-                    {profile.location.city}, {profile.location.countryCode} {profile.location.flag}
-                  </span>
-                  {coffeeClicks > 0 && coffeeClicks < 5 && (
-                    <span className="ml-2 text-xs text-primary">
-                      {5 - coffeeClicks} more...
-                    </span>
-                  )}
-                </div>
-              </motion.div>
+                )}
+              </ContactOption>
             </div>
 
             {/* Social links */}
@@ -254,169 +184,7 @@ const Contact = () => {
           </div>
 
           {/* Right column - Contact form */}
-          <motion.div
-            className="bg-background border border-border p-8 lg:p-10"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3 }}
-          >
-            <h3 className="font-mono text-xs text-primary uppercase tracking-widest mb-6">
-              Tell me more ...
-            </h3>
-            <form
-              className="space-y-6"
-              action={import.meta.env.VITE_FORM_SUBMIT_URL}
-              method="POST"
-            >
-              <input type="hidden" name="_captcha" value="false" />
-              {/* <input type="hidden" name="_next" value="https://yourdomain.com" /> */}
-
-              <div className="grid md:grid-cols-2 gap-6 py-2">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.4 }}
-                >
-                  <label className="font-mono text-xs text-muted-foreground uppercase tracking-widest block mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    name="Name"
-                    required
-                    className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors"
-                    placeholder="Your name"
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.45 }}
-                >
-                  <label className="font-mono text-xs text-muted-foreground uppercase tracking-widest block mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="Email Address"
-                    required
-                    className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors"
-                    placeholder="your@email.com"
-                  />
-                </motion.div>
-              </div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.5 }}
-                className=" py-2"
-              >
-                <label className="font-mono text-xs text-muted-foreground uppercase tracking-widest block mb-2">
-                  Project Type
-                </label>
-                <select
-                  name="Project Type"
-                  className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none cursor-pointer"
-                >
-                  <option value="" className="bg-background">
-                    Select project type
-                  </option>
-                  <option value="new-website" className="bg-background">
-                    New Website
-                  </option>
-                  <option value="website-redesign" className="bg-background">
-                    Website Redesign
-                  </option>
-                  <option value="fullstack" className="bg-background">
-                    Full-Stack Development
-                  </option>
-                  <option value="frontend" className="bg-background">
-                    Frontend Architecture
-                  </option>
-                  <option value="backend" className="bg-background">
-                    Backend Systems
-                  </option>
-                  <option value="cloud-migration" className="bg-background">
-                    Cloud Migration
-                  </option>
-                  <option value="consulting" className="bg-background">
-                    Technical Consulting
-                  </option>
-                </select>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.52 }}
-                className=" py-2"
-              >
-                <label className="font-mono text-xs text-muted-foreground uppercase tracking-widest block mb-2">
-                  Project Budget
-                </label>
-                <select
-                  name="Budget"
-                  className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none cursor-pointer"
-                >
-                  <option value="" className="bg-background">
-                    Select budget range
-                  </option>
-                  <option value="below-100k" className="bg-background">
-                    Below KES 100k
-                  </option>
-                  <option value="100k-250k" className="bg-background">
-                    KES 100k - 250k
-                  </option>
-                  <option value="250k-500k" className="bg-background">
-                    KES 250k - 500k
-                  </option>
-                  <option value="500k-1m" className="bg-background">
-                    KES 500k - 1M
-                  </option>
-                  <option value="above-1m" className="bg-background">
-                    Above KES 1M
-                  </option>
-                </select>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.55 }}
-                className=" py-2"
-              >
-                <label className="font-mono text-xs text-muted-foreground uppercase tracking-widest block mb-2">
-                  Message
-                </label>
-                <textarea
-                  name="Details"
-                  rows={4}
-                  className="w-full bg-transparent border-b border-border  focus:border-primary outline-none transition-colors resize-none text-sm"
-                  placeholder="Be as detailed as you desire..."
-                />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.6 }}
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.99 }}
-                className="flex justify-end"
-              >
-                <Button
-                  type="submit"
-                  variant="hero"
-                  size="sm"
-                  className="w-1/2"
-                >
-                  Send
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </motion.div>
-            </form>
-          </motion.div>
+          <ContactForm isInView={isInView} />
         </div>
       </div>
     </section>

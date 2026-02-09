@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { skillCategories, skillFacts } from "@/data/skills";
+import SkillSet from "@/components/ui/SkillSet";
 
 const Skills = () => {
   const ref = useRef(null);
@@ -103,44 +104,13 @@ const Skills = () => {
           <div className="lg:col-span-2">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {skillCategories.map((category, categoryIndex) => (
-                <motion.div
+                <SkillSet
                   key={category.title}
-                  className="space-y-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: categoryIndex * 0.1 }}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs text-primary/60">
-                      0{categoryIndex + 1}
-                    </span>
-                    <h3 className="font-semibold uppercase tracking-wider text-sm">
-                      {category.title}
-                    </h3>
-                  </div>
-                  <div className="border-l-2 border-primary/30 pl-4 space-y-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <motion.div
-                        key={skill}
-                        className={`font-mono text-sm text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer skill-glow ${skillFacts[skill] ? "hover:pl-2" : ""}`}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{
-                          delay: 0.2 + categoryIndex * 0.1 + skillIndex * 0.05,
-                        }}
-                        whileHover={{ x: 5, color: "hsl(var(--primary))" }}
-                        onClick={() => handleSkillClick(skill)}
-                      >
-                        {skill}
-                        {skillFacts[skill] && (
-                          <span className="ml-1 text-primary/40 text-xs">
-                            •
-                          </span>
-                        )}
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
+                  category={category}
+                  index={categoryIndex}
+                  isInView={isInView}
+                  onSkillClick={handleSkillClick}
+                />
               ))}
             </div>
           </div>
