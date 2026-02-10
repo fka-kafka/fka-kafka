@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
 const Footer = () => {
@@ -71,8 +71,9 @@ const Footer = () => {
             </span>
             <motion.div
               className="w-4 h-4 bg-primary/30"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              aria-hidden="true"
+              animate={!useReducedMotion() ? { rotate: 360 } : {}}
+              transition={!useReducedMotion() ? { duration: 20, repeat: Infinity, ease: "linear" } : {}}
             />
           </motion.div>
         </div>
