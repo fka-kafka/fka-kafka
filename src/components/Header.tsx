@@ -23,6 +23,7 @@ const Header = () => {
             className="flex items-center gap-3 group"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            aria-label="Brandon Kigen - Home"
           >
             <div className="w-10 h-10 border-2 border-primary flex items-center justify-center transition-all duration-300 group-hover:bg-primary">
               <span className="font-mono text-primary text-sm font-bold group-hover:text-primary-foreground transition-colors">
@@ -67,6 +68,8 @@ const Header = () => {
             <button
               className="p-2 text-foreground"
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

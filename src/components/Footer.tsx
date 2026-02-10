@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
 const Footer = () => {
@@ -34,26 +34,33 @@ const Footer = () => {
       <div className="container mx-auto px-6 lg:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Logo and copyright */}
-          <motion.div 
+          <motion.div
             className="flex items-center gap-4 cursor-pointer"
             onClick={handleLogoClick}
+            onKeyDown={(e) => e.key === "Enter" && handleLogoClick()}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            role="button"
+            tabIndex={0}
+            aria-label="Brandon Kigen Logo - Click to find an easter egg"
           >
-            <motion.div 
+            <motion.div
               className="w-8 h-8 border border-primary/50 flex items-center justify-center"
               animate={clickCount > 0 ? { rotate: clickCount * 10 } : {}}
               transition={{ type: "spring" }}
             >
-              <span className="font-mono text-primary text-xs font-bold">BK</span>
+              <span className="font-mono text-primary text-xs font-bold">
+                BK
+              </span>
             </motion.div>
             <span className="font-mono text-xs text-muted-foreground">
-              &copy; {new Date().getFullYear()} Brandon Kigen. All rights reserved.
+              &copy; {new Date().getFullYear()} Brandon Kigen. All rights
+              reserved.
             </span>
           </motion.div>
 
           {/* Tech line */}
-          <motion.div 
+          <motion.div
             className="flex items-center gap-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -62,10 +69,11 @@ const Footer = () => {
             <span className="font-mono text-xs text-muted-foreground  tracking-widest">
               Crafted by <i>kafka</i>
             </span>
-            <motion.div 
+            <motion.div
               className="w-4 h-4 bg-primary/30"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              aria-hidden="true"
+              animate={!useReducedMotion() ? { rotate: 360 } : {}}
+              transition={!useReducedMotion() ? { duration: 20, repeat: Infinity, ease: "linear" } : {}}
             />
           </motion.div>
         </div>

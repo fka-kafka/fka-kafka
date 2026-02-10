@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
 import { skillCategories, skillFacts } from "@/data/skills";
 import SkillSet from "@/components/ui/SkillSet";
@@ -6,6 +6,7 @@ import SkillSet from "@/components/ui/SkillSet";
 const Skills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const reduceMotion = useReducedMotion();
   const [clickedSkill, setClickedSkill] = useState<string | null>(null);
 
   const handleSkillClick = (skill: string) => {
@@ -23,7 +24,7 @@ const Skills = () => {
     >
       {/* Technical background pattern */}
       <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <svg aria-hidden="true" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern
               id="circuit"
@@ -120,13 +121,13 @@ const Skills = () => {
         <motion.div
           className="flex items-center gap-4 pt-12 border-t border-border"
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          animate={!reduceMotion && isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.5 }}
         >
           <motion.div
             className="w-4 h-4 bg-primary"
-            animate={{ rotate: [0, 90, 180, 270, 360] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            animate={!reduceMotion ? { rotate: [0, 90, 180, 270, 360] } : {}}
+            transition={!reduceMotion ? { duration: 10, repeat: Infinity, ease: "linear" } : {}}
           />
           <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest">
             Always expanding the toolkit

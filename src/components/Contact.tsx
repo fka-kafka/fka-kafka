@@ -7,7 +7,7 @@ import {
   Calendar,
   Globe,
 } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
 import { profile } from "@/data/profile";
 import ContactOption from "@/components/ui/ContactOption";
@@ -16,6 +16,7 @@ import ContactForm from "@/components/ui/ContactForm";
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const reduceMotion = useReducedMotion();
   const [coffeeClicks, setCoffeeClicks] = useState(0);
   const [showCoffeeEaster, setShowCoffeeEaster] = useState(false);
 
@@ -33,8 +34,12 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    { Icon: Github, href: profile.social.github },
-    { Icon: Linkedin, href: profile.social.linkedin },
+    { Icon: Github, href: profile.social.github, label: "GitHub Profile" },
+    {
+      Icon: Linkedin,
+      href: profile.social.linkedin,
+      label: "LinkedIn Profile",
+    },
   ];
 
   return (
@@ -61,14 +66,16 @@ const Contact = () => {
 
       {/* Animated geometric accent */}
       <motion.div
+        aria-hidden="true"
         className="absolute -right-20 -bottom-20 w-80 h-80 border-2 border-primary/10 rotate-12 hidden lg:block"
-        animate={{ rotate: [12, 15, 12] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        animate={!reduceMotion ? { rotate: [12, 15, 12] } : {}}
+        transition={!reduceMotion ? { duration: 8, repeat: Infinity, ease: "easeInOut" } : {}}
       />
       <motion.div
+        aria-hidden="true"
         className="absolute -left-10 -top-10 w-40 h-40 border border-primary/20 -rotate-12 hidden lg:block"
-        animate={{ rotate: [-12, -15, -12] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        animate={!reduceMotion ? { rotate: [-12, -15, -12] } : {}}
+        transition={!reduceMotion ? { duration: 6, repeat: Infinity, ease: "easeInOut" } : {}}
       />
 
       <div className="container mx-auto px-6 lg:px-12 relative">
@@ -166,7 +173,7 @@ const Contact = () => {
                 Connect
               </span>
               <div className="flex gap-4">
-                {socialLinks.map(({ Icon, href }, index) => (
+                {socialLinks.map(({ Icon, href, label }, index) => (
                   <motion.a
                     key={index}
                     href={href}
@@ -175,6 +182,7 @@ const Contact = () => {
                     className="w-10 h-10 border border-border flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all duration-300"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
+                    aria-label={label}
                   >
                     <Icon className="w-4 h-4 text-foreground" />
                   </motion.a>

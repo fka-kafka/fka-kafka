@@ -104,12 +104,13 @@ const ProjectTile = ({
 
         {/* Project info */}
         <div className="lg:col-span-7">
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-3">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">
               {project.category}
             </span>
-            <span className="text-xs text-muted-foreground">
-              • Updated {project.updated}
+            <span className="text-xs text-muted-foreground flex items-center">
+              <span className="hidden sm:inline mr-3 opacity-50">•</span>
+              Updated {project.updated}
             </span>
           </div>
           <motion.h3
@@ -154,6 +155,7 @@ const ProjectTile = ({
                 variant="technical"
                 size="sm"
                 onClick={() => window.open(project.github, "_blank")}
+                aria-label={`View source code for ${project.title} on GitHub`}
               >
                 <Github size={14} className="mr-2" />
                 View Code
@@ -164,6 +166,7 @@ const ProjectTile = ({
                 variant="ghost"
                 size="sm"
                 onClick={() => window.open(project.demo, "_blank")}
+                aria-label={`View details for ${project.title}`}
               >
                 <ExternalLink size={14} className="mr-2" />
                 Details
@@ -173,27 +176,29 @@ const ProjectTile = ({
         </div>
 
         {/* Metrics */}
-        <div className="lg:col-span-4 flex lg:flex-col gap-4 lg:gap-6 lg:border-l lg:border-border lg:pl-8">
-          <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-2 hidden lg:block">
+        <div className="lg:col-span-4 flex flex-col gap-4 lg:border-l lg:border-border lg:pl-8">
+          <span className="font-mono text-xs uppercase tracking-widest text-primary/70 lg:text-muted-foreground">
             Key Features
           </span>
-          {project.metrics.map((metric, metricIndex) => (
-            <motion.div
-              key={metric}
-              className="flex items-center gap-2 text-sm"
-              initial={{ opacity: 0, x: 20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.4 + metricIndex * 0.1 }}
-              whileHover={{ x: 5 }}
-            >
+          <div className="flex flex-wrap gap-x-6 gap-y-3 lg:flex-col lg:gap-4">
+            {project.metrics.map((metric, metricIndex) => (
               <motion.div
-                className="w-2 h-2 bg-primary"
-                animate={isHovered ? { scale: [1, 1.5, 1] } : {}}
-                transition={{ duration: 0.5, delay: metricIndex * 0.1 }}
-              />
-              <span className="font-mono text-foreground">{metric}</span>
-            </motion.div>
-          ))}
+                key={metric}
+                className="flex items-center gap-2 text-sm"
+                initial={{ opacity: 0, x: 20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.4 + metricIndex * 0.1 }}
+                whileHover={{ x: 5 }}
+              >
+                <motion.div
+                  className="w-2 h-2 bg-primary flex-shrink-0"
+                  animate={isHovered ? { scale: [1, 1.5, 1] } : {}}
+                  transition={{ duration: 0.5, delay: metricIndex * 0.1 }}
+                />
+                <span className="font-mono text-foreground">{metric}</span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </motion.article>
