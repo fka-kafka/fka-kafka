@@ -27,7 +27,7 @@ const SkillSet = ({
           {category.title}
         </h3>
       </div>
-      <div className="border-l-2 border-primary/30 pl-4 space-y-2">
+      <div className="border-l border-primary/75 pl-4 space-y-2">
         {category.skills.map((skill, skillIndex) => (
           <motion.div
             key={skill}

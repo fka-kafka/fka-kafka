@@ -33,8 +33,12 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    { Icon: Github, href: profile.social.github },
-    { Icon: Linkedin, href: profile.social.linkedin },
+    { Icon: Github, href: profile.social.github, label: "GitHub Profile" },
+    {
+      Icon: Linkedin,
+      href: profile.social.linkedin,
+      label: "LinkedIn Profile",
+    },
   ];
 
   return (
@@ -166,7 +170,7 @@ const Contact = () => {
                 Connect
               </span>
               <div className="flex gap-4">
-                {socialLinks.map(({ Icon, href }, index) => (
+                {socialLinks.map(({ Icon, href, label }, index) => (
                   <motion.a
                     key={index}
                     href={href}
@@ -175,6 +179,7 @@ const Contact = () => {
                     className="w-10 h-10 border border-border flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all duration-300"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
+                    aria-label={label}
                   >
                     <Icon className="w-4 h-4 text-foreground" />
                   </motion.a>

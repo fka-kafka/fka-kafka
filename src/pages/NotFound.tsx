@@ -16,6 +16,7 @@ const NotFound = () => {
       <div className="text-center">
         <figure>
           <svg
+            aria-hidden="true"
             width="24rem"
             height="24rem"
             viewBox="0 0 400 400"

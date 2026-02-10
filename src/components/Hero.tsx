@@ -12,14 +12,14 @@ const Hero = () => {
         animate={{ rotate: [45, 55, 45] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div className="absolute top-28 left-10 w-24 h-24 border border-primary/75 hidden md:hidden lg:block float" />
+      <motion.div className="absolute top-28 left-10 w-24 h-24 border border-primary/75 hidden md:block float" />
       <motion.div
-        className="absolute top-1/3 right-1/4 w-2 h-2 bg-primary rounded-full hidden lg:block"
+        className="absolute top-1/3 right-1/4 w-2 h-2 bg-primary rounded-full opacity-60 lg:opacity-100"
         animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
         transition={{ duration: 2, repeat: Infinity }}
       />
       <motion.div
-        className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-accent rounded-full hidden lg:block"
+        className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-accent rounded-full opacity-60 lg:opacity-100"
         animate={{ y: [0, -20, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -124,7 +124,7 @@ const Hero = () => {
 
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          className="absolute bottom-8 right-6 lg:left-1/2 lg:right-auto lg:-translate-x-1/2 flex flex-col items-center gap-2"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
