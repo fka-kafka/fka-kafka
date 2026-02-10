@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  base: mode === "development" ? "/" : "/brandon-kigen/",
+  base: mode === "development" ? "/" : "/portfolio/",
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
