@@ -3,12 +3,9 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import type { Project, ProjectIconName } from "@/data/projects";
 import {
-  BarChart3,
-  Server,
   Lock,
-  Calendar,
-  Smartphone,
   ShoppingBag,
+  WalletCards
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -17,12 +14,8 @@ import type { LucideIcon } from "lucide-react";
  * Maps string icon names from data to actual Lucide components
  */
 const iconMap: Record<ProjectIconName, LucideIcon> = {
-  BarChart3,
-  Server,
   Lock,
-  Calendar,
-  Smartphone,
-  ShoppingBag,
+  WalletCards,
 };
 
 export interface ProjectTileProps {
@@ -161,17 +154,24 @@ const ProjectTile = ({
                 View Code
               </Button>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => window.open(project.demo, "_blank")}
-                aria-label={`View details for ${project.title}`}
+            {project.demo ? (
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <ExternalLink size={14} className="mr-2" />
-                Details
-              </Button>
-            </motion.div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => window.open(project.demo, "_blank")}
+                  aria-label={`View details for ${project.title}`}
+                >
+                  <ExternalLink size={14} className="mr-2" />
+                  Details
+                </Button>
+              </motion.div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
 

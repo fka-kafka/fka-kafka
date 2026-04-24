@@ -67,7 +67,7 @@ const Contact = () => {
       {/* Animated geometric accent */}
       <motion.div
         aria-hidden="true"
-        className="absolute -right-20 -bottom-20 w-80 h-80 border-2 border-primary/10 rotate-12 hidden lg:block"
+        className="absolute -right-20 -bottom-20 w-80 h-80 border-2 border-primary/25 rotate-12 hidden lg:block"
         animate={!reduceMotion ? { rotate: [12, 15, 12] } : {}}
         transition={!reduceMotion ? { duration: 8, repeat: Infinity, ease: "easeInOut" } : {}}
       />

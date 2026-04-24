@@ -41,9 +41,9 @@ const Projects = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
           >
-            Projects
+            Open Source
             <br />
-            <span className="text-highlight">Dossier</span>
+            <span className="text-highlight">Contributions</span>
           </motion.h2>
           <motion.p
             className="text-muted-foreground max-w-md lg:text-right"
@@ -51,8 +51,8 @@ const Projects = () => {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.2 }}
           >
-            A curated selection of projects demonstrating full-stack
-            development, API design, and modern architectural patterns.
+            A curated selection of open source projects demonstrating full-stack development, 
+            API design, and modern architectural patterns. Contributing to the developer community.
           </motion.p>
         </div>
 

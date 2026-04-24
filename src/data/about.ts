@@ -5,11 +5,6 @@
 
 export type ExpertiseIconName = "Layout" | "Server" | "Database" | "Cloud";
 
-export interface Stat {
-  value: string;
-  label: string;
-  secret: string; // Easter egg tooltip
-}
 
 export interface ExpertiseArea {
   iconName: ExpertiseIconName;
@@ -17,11 +12,6 @@ export interface ExpertiseArea {
   description: string;
 }
 
-export const stats: Stat[] = [
-  { value: "1+", label: "Years Experience", secret: "Started in 2024 🚀" },
-  { value: "2", label: "Happy Clients", secret: "High satisfaction 🎯" },
-  { value: "99%", label: "Code Coverage", secret: "Tests are love ❤️" },
-];
 
 export const expertise: ExpertiseArea[] = [
   {
