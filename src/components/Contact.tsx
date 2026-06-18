@@ -110,7 +110,7 @@ const Contact = () => {
               Ready to discuss your next project? Whether you need a full-stack
               application, technical consultation, or architecture review—I'm
               here to help through any stage of the software development
-              lifecycle. <i className="text-highlight" >Hit me up</i>...
+              lifecycle. <i className="text-highlight" >Hit me up ...</i>
             </motion.p>
 
             <div className="space-y-6">
