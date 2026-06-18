@@ -5,7 +5,7 @@
 
 export const profile = {
   name: "Brandon Kigen",
-  title: "Software Product Engineer",
+  title: "Software Product Developer",
   location: {
     city: "Nairobi",
     country: "Kenya",
